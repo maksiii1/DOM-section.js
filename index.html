@@ -6,10 +6,19 @@
     <title>DOM-section</title>
   </head>
   <body>
-    <button onclick="showAlert()">CLICK!</button
-    ><span style="margin-left: 20px">- DOM-one.js</span>
-    <hr />
-
+    <div class="section-1">
+      <button onclick="showAlert()">CLICK!</button
+      ><span style="margin-left: 20px">- DOM-one.js</span>
+      <hr />
+    </div>
+    <div class="section-2">
+      <input type="text" id="text" />
+      <button onclick="showText()">Added text in input</button>
+      <button onclick="deleteText()">Delete text in input</button>
+      <span style="margin-left: 20px">- DOM-two.js</span>
+      <hr />
+    </div>
     <script src="./DOM-one.js"></script>
+    <script src="./DOM-two.js"></script>
   </body>
 </html>
