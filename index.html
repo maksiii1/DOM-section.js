@@ -4,6 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM-section</title>
+    <style>
+      .section-6 {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      #section-6__button {
+        height: 20px;
+      }
+
+      #square {
+        width: 200px;
+        height: 200px;
+        background-color: rgb(255, 0, 0);
+      }
+    </style>
   </head>
   <body>
     <div class="section-1">
@@ -38,10 +55,17 @@
       <span style="margin-left: 20px">- DOM-five.js</span>
       <hr />
     </div>
+    <div class="section-6">
+      <div id="square"></div>
+      <button id="section-6__button">Скрыть квадрат</button>
+      <span style="margin-left: 20px">- DOM-six.js</span>
+      <hr />
+    </div>
     <script src="./DOM-one.js"></script>
     <script src="./DOM-two.js"></script>
     <script src="./DOM-three.js"></script>
     <script src="./DOM-four.js"></script>
     <script src="./DOM-five.js"></script>
+    <script src="./DOM-six.js"></script>
   </body>
 </html>
