@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM-section</title>
     <style>
-      .section-6 {
+      .section-6,
+      .section-8,
+      #squaresGroup {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 15px;
       }
 
@@ -16,7 +19,8 @@
       }
 
       #square,
-      #square2 {
+      #square2,
+      .square3 {
         width: 200px;
         height: 200px;
         background-color: rgb(255, 0, 0);
@@ -70,10 +74,15 @@
     <hr />
     <div class="section-7">
       <div id="square2"></div>
-      <span style="margin-left: 20px">- DOM-six.js</span>
+      <span style="margin-left: 20px">- DOM-seven.js</span>
     </div>
     <hr />
-
+    <hr />
+    <div class="section-8">
+      <div id="squaresGroup"></div>
+      <span style="margin-left: 20px">- DOM-eight.js</span>
+    </div>
+    <hr />
     <script src="./DOM-one.js"></script>
     <script src="./DOM-two.js"></script>
     <script src="./DOM-three.js"></script>
@@ -81,5 +90,6 @@
     <script src="./DOM-five.js"></script>
     <script src="./DOM-six.js"></script>
     <script src="./DOM-seven.js"></script>
+    <script src="./DOM-eight.js"></script>
   </body>
 </html>
