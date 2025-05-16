@@ -47,131 +47,45 @@
       }
 
       .calculator {
-        display: grid;
-        width: 40%;
-        height: 600px;
+        width: 23%;
+        border: 1px solid rgb(216, 216, 216);
         margin: auto;
-        grid-template-areas:
-          "output output output output"
-          "seven eight nine share"
-          "four five six plus"
-          "one two three minus"
-          "zero zero zero equally";
-        border: 2px solid rgb(165, 165, 165);
+        background-color: rgb(178, 178, 178);
+        border-radius: 20px;
       }
 
-      .calculator > div:not(.calculator__output) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      #calculator__input {
+        width: 90%;
+        display: block;
+        margin: 10px auto;
+        padding: 30px;
+        font-size: 30px;
+        text-align: right;
+        border-radius: 20px;
+        background-color: rgb(253, 253, 253);
+        border: none;
       }
 
-      .calculator__output {
-        grid-area: output;
-        border-bottom: 2px solid rgb(165, 165, 165);
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        min-height: 40px;
-        padding-right: 20px;
-        font-size: 35px;
+      .calculator__buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 0 5% 10px 5%;
       }
 
-      .calculator__eight:hover,
-      .calculator__five:hover,
-      .calculator__four:hover,
-      .calculator__minus:hover,
-      .calculator__one:hover,
-      .calculator__equally:hover,
-      .calculator__plus:hover,
-      .calculator__zero:hover,
-      .calculator__two:hover,
-      .calculator__three:hover,
-      .calculator__six:hover,
-      .calculator__share:hover,
-      .calculator__seven:hover,
-      .calculator__nine:hover {
+      @media (max-width: 600px) {
+        .calculator__buttons {
+          grid-template-columns: repeat(2, 1fr);
+          overflow-x: hidden;
+        }
+      }
+
+      .calculator button {
+        height: 70px;
+        border: 1px solid gray;
+        border-radius: 30px;
         cursor: pointer;
-        background-color: rgb(192, 192, 192);
-        transition: all 0.1s;
-      }
-
-      .calculator__seven {
-        grid-area: seven;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__eight {
-        grid-area: eight;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__nine {
-        grid-area: nine;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__share {
-        grid-area: share;
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__four {
-        grid-area: four;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__five {
-        grid-area: five;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__six {
-        grid-area: six;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__plus {
-        grid-area: plus;
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__one {
-        grid-area: one;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__two {
-        grid-area: two;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__three {
-        grid-area: three;
-        border-right: 2px solid rgb(165, 165, 165);
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__minus {
-        grid-area: minus;
-        border-bottom: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__zero {
-        grid-area: zero;
-        border-right: 2px solid rgb(165, 165, 165);
-      }
-
-      .calculator__equally {
-        grid-area: equally;
+        box-shadow: 1px 1px 2px rgb(115, 115, 115);
       }
     </style>
   </head>
@@ -232,21 +146,55 @@
     <hr />
     <div class="section-10">
       <div class="calculator">
-        <div class="calculator__output"></div>
-        <div class="calculator__seven">7</div>
-        <div class="calculator__eight">8</div>
-        <div class="calculator__nine">9</div>
-        <div class="calculator__share">/</div>
-        <div class="calculator__four">4</div>
-        <div class="calculator__five">5</div>
-        <div class="calculator__six">6</div>
-        <div class="calculator__plus">+</div>
-        <div class="calculator__one">1</div>
-        <div class="calculator__two">2</div>
-        <div class="calculator__three">3</div>
-        <div class="calculator__minus">-</div>
-        <div class="calculator__zero">0</div>
-        <div class="calculator__equally">=</div>
+        <input type="text" id="calculator__input" disabled />
+        <div class="calculator__buttons">
+          <button onclick="setNumber(7)">7</button>
+          <button onclick="setNumber(8)">8</button>
+          <button onclick="setNumber(9)">9</button>
+          <button
+            onclick="clearInput()"
+            style="background-color: rgb(231, 64, 64)"
+          >
+            C
+          </button>
+          <button onclick="setNumber(4)">4</button>
+          <button onclick="setNumber(5)">5</button>
+          <button onclick="setNumber(6)">6</button>
+          <button
+            onclick="setOperator('/')"
+            style="background-color: rgb(69, 191, 194)"
+          >
+            /
+          </button>
+          <button onclick="setNumber(1)">1</button>
+          <button onclick="setNumber(2)">2</button>
+          <button onclick="setNumber(3)">3</button>
+          <button
+            onclick="setOperator('+')"
+            style="background-color: rgb(69, 191, 194)"
+          >
+            +
+          </button>
+          <button onclick="setNumber(0)">0</button>
+          <button
+            onclick="setOperator('.')"
+            style="font-size: 1.5rem; background-color: rgb(69, 191, 194)"
+          >
+            .
+          </button>
+          <button
+            onclick="setOperator('-')"
+            style="background-color: rgb(69, 191, 194)"
+          >
+            -
+          </button>
+          <button
+            onclick="getResult()"
+            style="background-color: rgb(243, 238, 0)"
+          >
+            =
+          </button>
+        </div>
       </div>
       <span style="margin-left: 20px">- DOM-ten.js</span>
     </div>
@@ -258,5 +206,6 @@
     <script src="./DOM-six.js"></script>
     <script src="./DOM-seven.js"></script>
     <script src="./DOM-eight.js"></script>
+    <script src="./DOM-ten.js"></script>
   </body>
 </html>
