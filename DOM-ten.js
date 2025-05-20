@@ -1,14 +1,21 @@
 const output = document.getElementById("calculator__input");
-const arrOperators = [];
+let arrOperators = [];
 let currentNumber = "";
 
 function setNumber(number) {
-  output.value += number;
-  currentNumber += number;
+  if (output.value === "Деление на 0") {
+    output.value = number;
+    currentNumber = number;
+    arrOperators = [];
+  } else {
+    output.value += number;
+    currentNumber += number;
+  }
 }
 
 function clearInput() {
   output.value = "";
+  currentNumber = "";
 }
 
 function setOperator(operator) {
@@ -24,13 +31,22 @@ function getResult() {
 
   try {
     while (i < arrOperators.length) {
-      if (arrOperators[i] === ".") {
-        result = parseFloat(arrNumbers[i] + "." + arrNumbers[i + 1]);
-        arrNumbers.splice(i, 2, result);
-        arrOperators.splice(i, 1);
+      if (
+        arrOperators[i] === "." ||
+        (arrOperators[i + 1] === "." && arrNumbers[i + 1] === 0)
+      ) {
+        if (arrOperators[i + 1] === "." && arrNumbers[i + 1] === 0) {
+          result = parseFloat(arrNumbers[i + 1] + "." + arrNumbers[i + 2]);
+          arrNumbers.splice(i + 1, 2, result);
+          arrOperators.splice(i + 1, 1);
+        } else {
+          result = parseFloat(arrNumbers[i] + "." + arrNumbers[i + 1]);
+          arrNumbers.splice(i, 2, result);
+          arrOperators.splice(i, 1);
+        }
       } else if (arrOperators[i] === "/") {
-        if (arrNumbers[i + 1] === 0 || arrNumbers[i] === 0) {
-          throw Error("Деление на 0");
+        if (arrNumbers[i + 1] === 0) {
+          throw new Error("Деление на 0");
         }
         result = arrNumbers[i] / arrNumbers[i + 1];
         arrNumbers.splice(i, 2, result);
@@ -55,9 +71,9 @@ function getResult() {
       }
     }
 
-    output.value = arrNumbers[0];
-    currentNumber = arrNumbers[0];
+    output.value = arrNumbers[0].toFixed(2);
+    currentNumber = arrNumbers[0].toFixed(2);
   } catch (e) {
-    output.value = e;
+    output.value = e.message;
   }
 }
