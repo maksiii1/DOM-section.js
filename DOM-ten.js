@@ -71,8 +71,28 @@ function getResult() {
       }
     }
 
-    output.value = arrNumbers[0].toFixed(2);
-    currentNumber = arrNumbers[0].toFixed(2);
+    let number = arrNumbers[0];
+
+    let numberString = number.toString();
+
+    let decimalIndex = numberString.indexOf(".");
+
+    if (decimalIndex !== -1 && numberString.length > decimalIndex + 1) {
+      let decimalDigit = numberString.charAt(decimalIndex + 1);
+
+      if (decimalDigit === "0") {
+        output.value = arrNumbers[0].toFixed(0);
+        currentNumber = arrNumbers[0].toFixed(0);
+      } else {
+        output.value = arrNumbers[0].toFixed(2);
+        currentNumber = arrNumbers[0].toFixed(2);
+      }
+    } else {
+      output.value = arrNumbers[0].toFixed(0);
+      currentNumber = arrNumbers[0].toFixed(0);
+    }
+
+    i;
   } catch (e) {
     output.value = e.message;
   }
